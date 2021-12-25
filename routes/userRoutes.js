@@ -15,14 +15,14 @@ router.get('/api/users/:id', (req, res) => {
     const oneUser = UserService.search(req.params.id);
     res.send(oneUser);
 })
-router.post('/api/users', (req, res) => {
+router.post('/api/users', createUserValid, (req, res) => {
     console.log(req.body)
     const newUser = req.body;
     return UserService.addUser(newUser);
     
     // res.status(200).send(`Added user ${newUser.firstName} ${newUser.lastName}`);
 })
-router.put('/api/users/:id', (req, res) => {
+router.put('/api/users/:id', updateUserValid, (req, res) => {
     const userIdToUpdate = req.params.id;
     const userDataToUpdate = req.body;
     UserService.updateUser(userIdToUpdate, userDataToUpdate);
